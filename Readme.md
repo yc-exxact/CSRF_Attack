@@ -26,8 +26,8 @@ This project demonstrates a **Cross-Site Request Forgery (CSRF)** attack using a
 
 ### 1. Clone the Repository
 ```bash
-git clone <https://github.com/yc-exxact/CSRF_Attack.git>
-cd <CSRF_Attack>
+git clone https://github.com/yc-exxact/CSRF_Attack.git
+cd CSRF_Attack
 ```
 
 ## Build and Run the Docker Container
