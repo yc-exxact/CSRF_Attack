@@ -4,21 +4,6 @@ This project demonstrates a **Cross-Site Request Forgery (CSRF)** attack using a
 
 ---
 
-project/
-├── app.py               # Main Flask application
-├── Dockerfile           # Dockerfile for containerization
-├── templates/
-│   ├── login.html       # Login page
-│   ├── signup.html      # Signup page
-│   ├── dashboard.html   # Dashboard after login
-│   └── csrf_attack.html # Page simulating the CSRF attack
-├── static/
-│   ├── styles.css       # Custom styles for the app
-│   └── diable.png       # Logo for the app
-└── requirements.txt     # Python dependencies
-
---- 
-
 ## Features
 
 - **User Authentication**: Sign up and log in with session handling.
@@ -41,8 +26,8 @@ project/
 
 ### 1. Clone the Repository
 ```bash
-git clone <repository_url>
-cd <repository_folder>
+git clone <https://github.com/yc-exxact/CSRF_Attack.git>
+cd <CSRF_Attack>
 ```
 
 ## Build and Run the Docker Container
