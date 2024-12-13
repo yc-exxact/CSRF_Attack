@@ -1,0 +1,96 @@
+/* Body avec dégradé diabolique */
+body {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Barre de navigation */
+.navbar {
+    background-color: #1a1a1a;
+    border-bottom: 1px solid #333;
+    box-shadow: 0px 4px 6px rgba(255, 0, 0, 0.3);
+}
+
+.navbar-brand img {
+    width: 50px;
+    height: 40px;
+    margin-right: 10px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 0px 4px 6px rgba(255, 0, 0, 0.5);
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff4444;
+}
+
+.navbar-nav .nav-link {
+    font-weight: bold;
+    color: #ff4444;
+}
+
+.navbar-nav .nav-link.active {
+    color: #ffc107;
+}
+
+/* Cartes avec un effet d'ombre et des couleurs sombres */
+.card {
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    background-color: #1a1a1a;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(255, 0, 0, 0.5);
+}
+
+.card-title {
+    font-weight: bold;
+    color: #fff;
+}
+
+.card-text {
+    font-size: 18px;
+    color: #ff4444;
+}
+
+/* Table */
+.table-hover tbody tr:hover {
+    background-color: #333;
+}
+
+.table-dark th, .table-dark td {
+    border-color: #555;
+}
+
+/* Style des badges */
+.badge {
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 12px;
+}
+
+.badge-success {
+    background-color: #28a745;
+}
+
+.badge-warning {
+    background-color: #ffc107;
+}
+
+.badge-danger {
+    background-color: #dc3545;
+}
+
+h4 {
+    font-weight: bold;
+    color: #ff4444;
+    text-shadow: 0px 4px 4px rgba(255, 0, 0, 0.5);
+}
