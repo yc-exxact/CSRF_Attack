@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . /app
 
 # Installer Flask
-RUN pip install flask --no-cache-dir
+RUN pip install flask
 
 # Exposer le port sur lequel Flask va tourner
 EXPOSE 5005

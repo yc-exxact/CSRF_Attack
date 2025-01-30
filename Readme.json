@@ -1,40 +1,55 @@
 {
     "title": "CSRF Attack Demonstration with Flask",
-    "description": "This project demonstrates a Cross-Site Request Forgery (CSRF) attack using a Flask web application. The goal is to illustrate how CSRF works and how attackers can exploit vulnerabilities to perform unauthorized actions on behalf of authenticated users.",
-    "features": [
-        "User Authentication: Sign up and log in with session handling.",
-        "Simulated CSRF Attack: Demonstrates password change exploitation via a hidden form.",
-        "Email Notification: Sends an email to notify users about suspicious activity.",
-        "Themed UI: A 'Diable' theme with custom styling for added engagement."
-    ],
-    "prerequisites": [
-        "Python: Install Python 3.12 or higher.",
-        "Docker: Ensure Docker is installed on your system.",
-        "Email Server: Use a Gmail account for sending emails."
-    ],
-    "installation": {
-        "option_1": {
-            "description": "Clone the Repository and Build the Image",
-            "steps": [
-                "Clone the Repository: git clone https://github.com/yc-exxact/CSRF_Attack.git",
-                "Navigate to the folder: cd CSRF_Attack",
-                "Build the Docker image: docker build -t csrf_attack_demo .",
-                "Run the container: docker run -p 5005:5005 csrf_attack_demo"
-            ]
-        },
-        "option_2": {
-            "description": "Use Prebuilt Docker Image",
-            "steps": [
-                "Pull the Prebuilt Image: docker pull eddycaron/diable:csrf2025",
-                "Run the Container: docker run -p 5005:5005 eddycaron/diable:csrf2025"
-            ]
-        }
+    "overview": "Ce guide vous accompagne dans l'installation et l'exploitation d'une application Flask vulnérable aux attaques Cross-Site Request Forgery (CSRF). Cette démonstration illustre comment une vulnérabilité CSRF peut être exploitée pour modifier le mot de passe d'un utilisateur authentifié à son insu.",
+    "warning": "⚠️ Avertissement : Ce guide est destiné uniquement à des fins éducatives dans un environnement contrôlé. L'exploitation non autorisée de vulnérabilités est illégale.",
+    "prerequisites": {
+      "python": {
+        "description": "Installation de Python 3",
+        "check": "python3 --version",
+        "download": "https://www.python.org/"
+      },
+      "docker": {
+        "description": "Installation de Docker",
+        "check": "docker --version",
+        "documentation": "https://docs.docker.com/get-docker/"
+      },
+      "email_server": "Un compte Gmail est requis pour envoyer des emails dans l'application."
     },
-    "usage": [
-        "Access the Application: Open http://localhost:5005 in your browser.",
-        "Create an Account: Click on 'Sign Up,' fill in your details, and submit.",
-        "Log In: Use your email and password to log in. Upon login, an email will be sent to your address.",
-        "Simulate the CSRF Attack: Open the email and click on the link. The link directs you to a page containing a hidden form that automatically submits a password change request. The password will be changed to 'newpassword123'.",
-        "Observe the Result: Check the Flask console logs to see the CSRF activity and password change. Log in again with the new password to verify the attack."
-    ]
-}
+    "installation": {
+      "step1": {
+        "description": "Cloner le dépôt GitHub",
+        "commands": [
+          "git clone https://github.com/yc-exxact/CSRF_Attack.git",
+          "cd CSRF_Attack"
+        ]
+      },
+
+      "step2": {
+        "build": "docker build -t csrf_attack_demo .",
+        "run": "docker run -p 5005:5005 csrf_attack_demo"
+      },
+      "alternative": {
+        "pull": "docker pull eddycaron/diable:csrf2025",
+        "run": "docker run -p 5005:5005 eddycaron/diable:csrf2025"
+      }
+    },
+    "usage": {
+      "access": "http://localhost:5005",
+      "create_account": "Inscription avec email et mot de passe",
+      "login": "Connexion avec email et mot de passe",
+      "csrf_attack": "Cliquez sur le lien reçu dans l'email pour déclencher l'attaque",
+      "verification": "Vérifiez dans les logs Flask et essayez de vous reconnecter avec 'newpassword123'"
+    },
+    "impact": {
+      "identity_theft": "Un attaquant peut forcer un utilisateur authentifié à exécuter des actions malveillantes.",
+      "unauthorized_access": "Modification de données sensibles comme le mot de passe utilisateur.",
+      "security_risks": "Exploitation de la confiance accordée aux utilisateurs authentifiés."
+    },
+    "mitigation": {
+      "csrf_tokens": "Utiliser des jetons CSRF pour valider l'origine des requêtes.",
+      "origin_verification": "Vérifier les en-têtes 'Referer' et 'Origin'.",
+      "secure_http_methods": "Limiter les actions sensibles aux méthodes HTTP sécurisées."
+    },
+    "conclusion": "Cette démonstration illustre comment une attaque CSRF peut être réalisée et pourquoi il est crucial de mettre en place des protections adéquates. Ne testez jamais ces attaques sans autorisation légale."
+  }
+  
