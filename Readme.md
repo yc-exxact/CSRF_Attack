@@ -1,63 +1,119 @@
 # CSRF Attack Demonstration with Flask
 
-This project demonstrates a **Cross-Site Request Forgery (CSRF)** attack using a Flask web application. The goal is to illustrate how CSRF works and how attackers can exploit vulnerabilities to perform unauthorized actions on behalf of authenticated users.
+## Overview
+Ce guide vous accompagne dans l'installation et l'exploitation d'une application Flask vulnérable aux attaques **Cross-Site Request Forgery (CSRF)**. Cette démonstration illustre comment une vulnérabilité CSRF peut être exploitée pour modifier le mot de passe d'un utilisateur authentifié à son insu.
+
+> **⚠️ Avertissement :** Ce guide est destiné uniquement à des fins éducatives dans un environnement contrôlé. L'exploitation non autorisée de vulnérabilités est illégale.
 
 ---
 
-## Features
+## Prérequis
 
-- **User Authentication**: Sign up and log in with session handling.
-- **Simulated CSRF Attack**: Demonstrates password change exploitation via a hidden form.
-- **Email Notification**: Sends an email to notify users about suspicious activity.
-- **Themed UI**: A "Diable" theme with custom styling for added engagement.
+### 1. Installation de Python 3
+Vérifiez que Python 3 est installé sur votre système :
+```bash
+python3 --version
+```
+Si nécessaire, téléchargez-le depuis [python.org](https://www.python.org/).
+
+### 2. Installation de Docker
+Vérifiez que Docker est installé :
+```bash
+docker --version
+```
+Installez Docker si besoin en suivant [cette documentation](https://docs.docker.com/get-docker/).
+
+### 3. Serveur Email
+Un compte Gmail est requis pour envoyer des emails dans l'application.
 
 ---
-
-## Prerequisites
-
-1. **Python**: Install Python 3.12 or higher.
-2. **Docker**: Ensure Docker is installed on your system.
-3. **Email Server**: Use a Gmail account for sending emails.
-
----
-
 
 ## Installation
 
-### 1. Clone the Repository
+### Étape 1 : Cloner le dépôt GitHub
 ```bash
 git clone https://github.com/yc-exxact/CSRF_Attack.git
 cd CSRF_Attack
 ```
 
-## Build and Run the Docker Container
+### Étape 2 : Construire et Exécuter avec Docker
+#### 1. Construire l'image Docker :
 ```bash
 docker build -t csrf_attack_demo .
+```
+#### 2. Lancer le conteneur :
+```bash
 docker run -p 5005:5005 csrf_attack_demo
 ```
 
-## Usage
+### Option Alternative : Utiliser une Image Docker Préconstruite
 
-### 1. Access the Application
-
-Open your browser and navigate to:
+#### 1. Télécharger l'image :
 ```bash
-http://localhost:5005
-
+docker pull eddycaron/diable:csrf2025
+```
+#### 2. Exécuter le conteneur :
+```bash
+docker run -p 5005:5005 eddycaron/diable:csrf2025
 ```
 
-### 2. Create an Account
- - Click on the "Sign Up" link.
- - Fill in your details and submit.
+---
 
-### 3. Log In
- - Use your email and password to log in.
- - Upon login, you will be redirected to the dashboard, and an email will be sent to your address.
+## Utilisation
 
-### 4. Simulate the CSRF Attack
- - Open your email and click on the link included in the message:
- - The link directs you to a page containing a hidden form that automatically submits a password change request without user interaction. Upon visiting the link, the password of the logged-in user will be changed to newpassword123
+### 1. Accéder à l'Application
+Ouvrez votre navigateur et rendez-vous sur :
+```bash
+http://localhost:5005
+```
 
-### 5. Observe the Result
- - Check the Flask console logs to see the CSRF activity and password change.
- - Try logging in again with the new password (newpassword123) to verify the attack's success.
+### 2. Créer un Compte
+- Cliquez sur "Sign Up".
+- Remplissez les champs avec vos informations.
+- Un email de confirmation vous sera envoyé.
+
+### 3. Se Connecter
+- Utilisez votre adresse e-mail et votre mot de passe pour vous authentifier.
+- Vous serez redirigé vers le tableau de bord.
+
+### 4. Simuler l'Attaque CSRF
+- Ouvrez l'e-mail reçu et cliquez sur le lien.
+- Une requête cachée changera automatiquement votre mot de passe en `newpassword123`.
+
+### 5. Vérifier le Résultat
+- Consultez les logs Flask pour observer l'attaque.
+- Essayez de vous reconnecter avec `newpassword123`.
+
+---
+
+## Impact
+
+### **Usurpation d'Identité**
+Un attaquant peut forcer un utilisateur authentifié à exécuter des actions malveillantes sans son consentement.
+
+### **Accès Non Autorisé**
+L'attaque permet de modifier des informations sensibles, comme le mot de passe d’un compte, facilitant ainsi une prise de contrôle.
+
+### **Atteinte à la Sécurité des Applications Web**
+Les attaques CSRF exploitent la confiance qu'un site web accorde aux requêtes provenant d'un utilisateur authentifié.
+
+---
+
+## Mitigation
+
+### **1. Protection via Tokens CSRF**
+- Implémentez des jetons CSRF pour vérifier l'origine des requêtes.
+
+### **2. Vérification des Origines**
+- Vérifiez les en-têtes `Referer` et `Origin` pour empêcher les requêtes malveillantes.
+
+### **3. Méthodes HTTP Sécurisées**
+- Limitez les requêtes sensibles aux méthodes `POST` et `DELETE` avec validation supplémentaire.
+
+---
+
+## Conclusion
+
+Cette démonstration illustre la facilité avec laquelle une attaque CSRF peut être réalisée sur une application web vulnérable. Il est essentiel de mettre en place des mécanismes de protection robustes pour éviter de telles vulnérabilités.
+
+**🚨 Ne testez jamais ces attaques sans autorisation légale !**
